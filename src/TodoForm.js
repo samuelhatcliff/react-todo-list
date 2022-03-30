@@ -1,21 +1,30 @@
 import React, {useState} from "react";
 
-const TodoForm = () => {
-    const [todo, setTodo] = useState("first-todo")
+const TodoForm = ({addTodo}) => {
+    const initialState = {
+        item: "",
+      }
+    const [formData, setFormData] = useState(initialState)
     const handleChange = (e) => {
-        console.log(e.target.value)
-        setTodo(e.target.value)
+        const { name, value } = e.target;
+        setFormData(data => ({
+          ...data,
+          [name]: value
+        }))
+        console.log(formData)
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        alert(`added todo, ${todo}`)
-        setTodo("")
-    }
+        addTodo(formData);
+        setFormData(initialState)
+      }
     return (
         <form onSubmit={handleSubmit}>
+            <label htmlFor="item">Enter an item:</label>
             <input type = "text" 
+            name = "item"
             placeholder = "enter to-do" 
-            value = {todo}
+            value = {formData.item}
             onChange={handleChange}
             />
             <button>Add To-Do!</button>
