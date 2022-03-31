@@ -16,13 +16,17 @@ function TodoList () {
         setTodos(todos.filter(todo => todo.id !== id ))
     }
     return (
-        <div>
-            <h1>To-Do List</h1>
+        <div className = "bg-slate-100 h-100 w-100 shadow-xl rounded">
+            <div className="px-6 py-2.5">
+            <h1 className="flex justify-center text-5xl font-bold">To-Do List</h1>
             <TodoForm addTodo={addTodo}/>
-            <div>
+            <div 
+            className="grid justify-items-start max-w-sm rounded overflow-hidden"
+            >
                 {todos.map(({id, item}) =>
                 <Todo removeTodo = {removeTodo} id= {id} item={item} key={id} />
                 )}
+            </div>
             </div>
         </div>
     )

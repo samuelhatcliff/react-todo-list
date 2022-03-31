@@ -4,7 +4,7 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
+    <div className="flex justify-center items-start ">
       <TodoList />
     </div>
   );
